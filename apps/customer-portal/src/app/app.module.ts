@@ -12,9 +12,21 @@ import { LayoutModule } from '@demo-app/layout';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot([{ path: 'auth', children: authRoutes }], {
-      initialNavigation: 'enabled',
-    }),
+    RouterModule.forRoot(
+      [
+        { path: 'auth', children: authRoutes },
+        {
+          path: 'products',
+          loadChildren: () =>
+            import('@demo-app/products').then(
+              (module) => module.ProductsModule
+            ),
+        },
+      ],
+      {
+        initialNavigation: 'enabled',
+      }
+    ),
     LayoutModule,
     AuthModule,
   ],
