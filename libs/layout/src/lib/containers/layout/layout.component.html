@@ -1,4 +1,2 @@
-<mat-toolbar color="primary" fxLayout="row">
-  <span>Customer Portal</span>
-</mat-toolbar>
+<app-toolbar [user]="user$ | async"></app-toolbar>
 <ng-content></ng-content>
