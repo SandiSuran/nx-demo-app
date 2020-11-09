@@ -10,7 +10,7 @@ import { Authenticate } from '../../../../../data-models';
 @Component({
   selector: 'demo-app-login-form',
   templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.css'],
+  styleUrls: ['./login-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginFormComponent implements OnInit {
