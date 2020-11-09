@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Authenticate } from '../../../../../data-models';
+import { Authenticate } from '@demo-app/data-models';
 @Component({
   selector: 'demo-app-login-form',
   templateUrl: './login-form.component.html',
