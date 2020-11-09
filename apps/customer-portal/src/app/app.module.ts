@@ -14,6 +14,7 @@ import { LayoutModule } from '@demo-app/layout';
     BrowserAnimationsModule,
     RouterModule.forRoot(
       [
+        { path: '', pathMatch: 'full', redirectTo: 'products' },
         { path: 'auth', children: authRoutes },
         {
           path: 'products',
