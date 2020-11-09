@@ -7,6 +7,10 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { MaterialModule } from '@demo-app/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import * as fromAuth from './+state/auth.reducer';
+import { AuthEffects } from './+state/auth.effects';
 
 export const authRoutes: Route[] = [
   { path: 'login', component: LoginComponent },
@@ -22,6 +26,8 @@ const COMPONENTS = [LoginComponent, LoginFormComponent];
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
+    StoreModule.forFeature(fromAuth.AUTH_FEATURE_KEY, fromAuth.reducer),
+    EffectsModule.forFeature([AuthEffects]),
   ],
   declarations: [...COMPONENTS],
   exports: [...COMPONENTS],
