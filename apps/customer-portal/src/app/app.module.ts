@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { authRoutes, AuthModule } from '@demo-app/auth';
+import { authRoutes, AuthModule, AuthGuard } from '@demo-app/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@demo-app/layout';
 
@@ -22,6 +22,7 @@ import { LayoutModule } from '@demo-app/layout';
             import('@demo-app/products').then(
               (module) => module.ProductsModule
             ),
+          canActivate: [AuthGuard],
         },
       ],
       {
