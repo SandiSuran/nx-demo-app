@@ -10,7 +10,7 @@
       >
         Products
       </button>
-      <button mat-button>Logout</button>
+      <button mat-button (click)="logoutEvt.emit()">Logout</button>
     </span>
     <span *ngIf="!user">
       <button

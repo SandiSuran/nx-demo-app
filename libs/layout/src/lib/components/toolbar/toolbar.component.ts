@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
 } from '@angular/core';
 import { User } from '@demo-app/data-models';
 
@@ -14,6 +16,7 @@ import { User } from '@demo-app/data-models';
 })
 export class ToolbarComponent implements OnInit {
   @Input() user: User;
+  @Output() logoutEvt = new EventEmitter();
   constructor() {}
 
   ngOnInit(): void {}
