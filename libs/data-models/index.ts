@@ -1,2 +1,2 @@
-export * from './authenticate';
-export * from './user';
+export { Authenticate } from './authenticate';
+export { User } from './user';
