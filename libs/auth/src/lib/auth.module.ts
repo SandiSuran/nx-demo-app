@@ -26,7 +26,7 @@ const COMPONENTS = [LoginComponent, LoginFormComponent];
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    StoreModule.forFeature(fromAuth.AUTH_FEATURE_KEY, fromAuth.reducer),
+    StoreModule.forFeature(fromAuth.AUTH_FEATURE_KEY, fromAuth.authReducer),
     EffectsModule.forFeature([AuthEffects]),
   ],
   declarations: [...COMPONENTS],

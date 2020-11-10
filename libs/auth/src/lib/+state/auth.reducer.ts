@@ -1,43 +1,42 @@
-import { createReducer, on, Action } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-
-import * as AuthActions from './auth.actions';
-import { AuthEntity } from './auth.models';
+import { User } from '@demo-app/data-models';
+import { authActions, AuthActionTypes } from './auth.actions';
 
 export const AUTH_FEATURE_KEY = 'auth';
 
-export interface State extends EntityState<AuthEntity> {
-  selectedId?: string | number; // which Auth record has been selected
-  loaded: boolean; // has the Auth list been loaded
-  error?: string | null; // last known error (if any)
+export interface AuthData {
+  loaded: boolean;
+  loading: boolean;
+  user: User;
+  error?: string | null;
 }
 
 export interface AuthPartialState {
-  readonly [AUTH_FEATURE_KEY]: State;
+  readonly [AUTH_FEATURE_KEY]: AuthData;
 }
 
-export const authAdapter: EntityAdapter<AuthEntity> = createEntityAdapter<
-  AuthEntity
->();
-
-export const initialState: State = authAdapter.getInitialState({
-  // set initial required properties
+export const initialState: AuthData = {
+  user: null,
   loaded: false,
-});
+  loading: false,
+};
 
-const authReducer = createReducer(
-  initialState,
-  on(AuthActions.loadAuth, (state) => ({
-    ...state,
-    loaded: false,
-    error: null,
-  })),
-  on(AuthActions.loadAuthSuccess, (state, { auth }) =>
-    authAdapter.setAll(auth, { ...state, loaded: true })
-  ),
-  on(AuthActions.loadAuthFailure, (state, { error }) => ({ ...state, error }))
-);
-
-export function reducer(state: State | undefined, action: Action) {
-  return authReducer(state, action);
+export function authReducer(
+  state = initialState,
+  action: authActions
+): AuthData {
+  switch (action.type) {
+    case AuthActionTypes.Login:
+      return { ...state, loading: true };
+    case AuthActionTypes.LoginSuccess:
+      return { ...state, loading: false, user: action.payload };
+    case AuthActionTypes.LoginFail:
+      return {
+        ...state,
+        user: null,
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
 }
